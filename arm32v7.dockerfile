@@ -10,9 +10,6 @@ COPY --from=builder qemu-arm-static /usr/bin
 
 RUN mkdir /data && mkdir /data/bin && mkdir /data/config
 WORKDIR /data/bin
-RUN apt-get update && apt-get install wget xz-utils -y
-RUN wget https://github.com/sumoprojects/sumokoin/releases/download/v0.7.0.0/sumokoin.linux.armv7.v0-7-0-0.tar.xz -O sumokoin.tar.xz
-RUN tar -xf "sumokoin.tar.xz" && rm sumokoin.tar.xz && apt-get remove wget xz-utils -y && apt-get clean
-RUN cp sumokoin.linux.armv7.v0-7-0-0/sumo-wallet-rpc /data/bin && rm -R sumokoin.linux.armv7.v0-7-0-0
+RUN apt-get update && apt-get install wget xz-utils -y && wget https://github.com/sumoprojects/sumokoin/releases/download/v0.7.0.0/sumokoin.linux.armv7.v0-7-0-0.tar.xz -O sumokoin.tar.xz && tar -xf "sumokoin.tar.xz" && rm sumokoin.tar.xz && apt-get remove wget xz-utils -y && apt-get clean && cp sumokoin.linux.armv7.v0-7-0-0/sumo-wallet-rpc /data/bin && rm -R sumokoin.linux.armv7.v0-7-0-0
 
 WORKDIR /data/config
