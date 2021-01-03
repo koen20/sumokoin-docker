@@ -4,8 +4,7 @@ FROM alpine AS builder
 ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v4.0.0%2Bbalena2/qemu-4.0.0.balena2-arm.tar.gz
 RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
-#FROM debian@sha256:030ab272b197c7e534d4807c14842d751280fc8eec87aa00ae102abf19888e85
-FROM ubuntu@sha256:be2aa2178e05b3d1930b4192ba405cb1d260f6a573abab4a6e83e0ebec626cf1
+FROM debian@sha256:030ab272b197c7e534d4807c14842d751280fc8eec87aa00ae102abf19888e85
 
 COPY --from=builder qemu-arm-static /usr/bin
 
